@@ -1,20 +1,18 @@
 package users
 
 import (
+	"../../domain/users"
 	"../../services"
 	"../../utils/errors"
-	"../../domain/users"
 	"github.com/gin-gonic/gin"
 	"net/http"
 	"strconv"
 )
 
-func GetUser(c *gin.Context) {
-	userId, userErr := strconv.ParseInt(c.Param("user_id"), 10, 64)
-
+func Get(c *gin.Context) {
+	userId, userErr := getUserId(c.Param("user_id"))
 	if userErr != nil {
-		restErr := errors.NewBadRequestError("invalid user_id")
-		c.JSON(restErr.Status, restErr)
+		c.JSON(userErr.Status, userErr)
 		return
 	}
 
@@ -27,7 +25,7 @@ func GetUser(c *gin.Context) {
 	c.JSON(http.StatusCreated, user)
 }
 
-func CreateUser(c *gin.Context) {
+func Create(c *gin.Context) {
 	var user users.User
 
 	if err := c.ShouldBindJSON(&user); err != nil {
@@ -45,6 +43,54 @@ func CreateUser(c *gin.Context) {
 	c.JSON(http.StatusCreated, result)
 }
 
-func SearchUser(c *gin.Context) {
-	c.String(http.StatusNotImplemented, "implement me!")
+func Update(c *gin.Context) {
+	userId, userErr := getUserId(c.Param("user_id"))
+	if userErr != nil {
+		c.JSON(userErr.Status, userErr)
+		return
+	}
+
+	var user users.User
+	if err := c.ShouldBindJSON(&user); err != nil {
+		restErr := errors.NewBadRequestError("invalid json body")
+		c.JSON(restErr.Status, restErr)
+		return
+	}
+
+	user.Id = userId
+
+	isPartial := c.Request.Method == http.MethodPatch
+
+	result, updateErr := services.UpdateUser(isPartial, user)
+	if updateErr != nil {
+		c.JSON(updateErr.Status, updateErr)
+		return
+	}
+
+	c.JSON(http.StatusOK, result)
+}
+
+func Delete(c *gin.Context) {
+	userId, userErr := getUserId(c.Param("user_id"))
+	if userErr != nil {
+		c.JSON(userErr.Status, userErr)
+		return
+	}
+
+	deleteErr := services.DeleteUser(userId)
+	if deleteErr != nil {
+		c.JSON(deleteErr.Status, deleteErr)
+		return
+	}
+
+	c.JSON(http.StatusOK, map[string]string{"status":"deleted"})
+}
+
+func getUserId(userIdParam string) (int64, *errors.RestErr) {
+	userId, userErr := strconv.ParseInt(userIdParam, 10, 64)
+	if userErr != nil {
+		return 0, errors.NewBadRequestError("invalid user_id")
+	}
+
+	return userId, nil
 }
