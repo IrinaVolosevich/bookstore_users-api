@@ -26,6 +26,14 @@
 
 
 [[constraint]]
+  branch = "master"
+  name = "github.com/IrinaVolosevich/bookstore_oauth-go"
+
+[[constraint]]
+  branch = "master"
+  name = "github.com/IrinaVolosevich/bookstore_utils-go"
+
+[[constraint]]
   name = "github.com/gin-gonic/gin"
   version = "1.5.0"
 
@@ -34,12 +42,12 @@
   version = "1.5.0"
 
 [[constraint]]
-    name = "github.com/IrinaVolosevich/bookstore_utils-go"
-    branch = "master"
+  name = "github.com/stretchr/testify"
+  version = "1.5.1"
 
 [[constraint]]
   name = "go.uber.org/zap"
-  version = "1.14.0"
+  version = "1.14.1"
 
 [prune]
   go-tests = true

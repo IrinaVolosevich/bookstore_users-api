@@ -3,22 +3,22 @@
 
 [[projects]]
   branch = "master"
-  digest = "1:ef871f1030ab750ba9ec2644fe4f04b50572c4a8d0ea2569da4ab7bfba28d70f"
+  digest = "1:0c7c7bdaaf7fdd894389e045de21a702b74c4ce5eb8aa1eea8b488b9ea371e5e"
   name = "github.com/IrinaVolosevich/bookstore_oauth-go"
-  packages = [
-    "oauth",
-    "oauth/error",
-  ]
+  packages = ["oauth"]
   pruneopts = "UT"
-  revision = "77ca63578156d839b2db9d791dd79f71a72967fe"
+  revision = "bb645792b117251d1b9a23eb59c0c58758269fc6"
 
 [[projects]]
   branch = "master"
-  digest = "1:4644dd293a418c444e977c56ee1651258deadcb8720dd14844e324614286c528"
+  digest = "1:10bf5b3ed14018a5ad023e44d2fb572c9dcb8ad6fca6b775463719a40cbf6a05"
   name = "github.com/IrinaVolosevich/bookstore_utils-go"
-  packages = ["rest_errors"]
+  packages = [
+    "logger",
+    "rest_errors",
+  ]
   pruneopts = "UT"
-  revision = "36a4670b8c3f399e90458536561a33fb83d1509d"
+  revision = "9c55f0999ab1c2eadeeb4ce11610f76ce1908be2"
 
 [[projects]]
   digest = "1:ffe9824d294da03b391f44e1ae8281281b4afc1bdaa9588c9097785e3af10cec"
@@ -81,8 +81,8 @@
   name = "github.com/golang/protobuf"
   packages = ["proto"]
   pruneopts = "UT"
-  revision = "5d5b4c10bd43f85e63bd9e4a3fa9b1ea2ef88af2"
-  version = "v1.3.4"
+  revision = "84668698ea25b64748563aa20726db66a6b8d299"
+  version = "v1.3.5"
 
 [[projects]]
   digest = "1:7cd2924a44ecf80a319cfa2378529fabd348d011b739fb4eccc565f65e3296c4"
@@ -173,7 +173,7 @@
   version = "v1.5.0"
 
 [[projects]]
-  digest = "1:7cf33d98a2a8d4ddb940ee365e1d93c334de32813767cf2e78bfb2774f6d78ec"
+  digest = "1:37db8edb1893509ed6230cb160a98ff5dc8fe4f82b6818baa88af4b478ce3824"
   name = "go.uber.org/zap"
   packages = [
     ".",
@@ -184,40 +184,16 @@
     "zapcore",
   ]
   pruneopts = "UT"
-  revision = "c89bd3c833f56cad3bc6dfa104b9c6d144526145"
-  version = "v1.14.0"
+  revision = "2aa9fa25da83bdfff756c36a91442edc9a84576c"
+  version = "v1.14.1"
 
 [[projects]]
   branch = "master"
-  digest = "1:3403849330a8ab0adfff079dc6c6ad7bd8961a4a6891d05b9797063b4024f623"
-  name = "golang.org/x/lint"
-  packages = [
-    ".",
-    "golint",
-  ]
-  pruneopts = "UT"
-  revision = "738671d3881b9731cc63024d5d88cf28db875626"
-
-[[projects]]
-  branch = "master"
-  digest = "1:8d59aa6f03198132e0ca3bf998677f9698e1e27fc67976c85d85086ac3496530"
+  digest = "1:4a1984ad1b48641ef91f73689012cdba27ed1eb94aeee1aa0b421e2208530a17"
   name = "golang.org/x/sys"
   packages = ["unix"]
   pruneopts = "UT"
-  revision = "5c8b2ff67527cb88b770f693cebf3799036d8bc0"
-
-[[projects]]
-  branch = "master"
-  digest = "1:1050c11c1d756701b8a247428e7af6cdc4f45b5bca163ae8b9c78ea0e2455e87"
-  name = "golang.org/x/tools"
-  packages = [
-    "go/ast/astutil",
-    "go/gcexportdata",
-    "go/internal/gcimporter",
-    "go/types/typeutil",
-  ]
-  pruneopts = "UT"
-  revision = "51e69f71924feb7593954ae1973578c0c9ac2e4f"
+  revision = "328b4cd54aaeaba222936f16d417999f7e521f7b"
 
 [[projects]]
   digest = "1:0e49ce3bb641491517ba5035619be50aa07619814665c9761d0decb48f35ea94"
@@ -240,13 +216,11 @@
   analyzer-version = 1
   input-imports = [
     "github.com/IrinaVolosevich/bookstore_oauth-go/oauth",
-    "github.com/IrinaVolosevich/bookstore_oauth-go/oauth/error",
+    "github.com/IrinaVolosevich/bookstore_utils-go/logger",
     "github.com/IrinaVolosevich/bookstore_utils-go/rest_errors",
     "github.com/gin-gonic/gin",
     "github.com/go-sql-driver/mysql",
     "github.com/stretchr/testify/assert",
-    "go.uber.org/zap",
-    "go.uber.org/zap/zapcore",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1

@@ -2,11 +2,11 @@ package users
 
 import (
 	"bookstore_users-api/datasources/mysql/users_db"
-	"bookstore_users-api/logger"
 	"bookstore_users-api/utils/date_utils"
 	"bookstore_users-api/utils/mysql_utils"
-	"github.com/IrinaVolosevich/bookstore_utils-go/rest_errors"
 	"fmt"
+	"github.com/IrinaVolosevich/bookstore_utils-go/logger"
+	"github.com/IrinaVolosevich/bookstore_utils-go/rest_errors"
 	"strings"
 )
 
